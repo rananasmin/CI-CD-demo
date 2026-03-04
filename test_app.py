@@ -13,4 +13,4 @@ def test_home_status_code(client):
 
 def test_home_response_data(client):
     response = client.get("/")
-    assert response.data == b"CI/CD is working!"
+    assert response.data == b"Welcome to the Simple Flask App!"
