@@ -23,5 +23,4 @@ def search():
     return f"Result for {query}"
 
 if __name__ == "__main__" :
-    app.run(debug="true")
-        
+    app.run(host="0.0.0.0", port=5000)        
