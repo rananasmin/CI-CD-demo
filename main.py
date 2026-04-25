@@ -8,6 +8,7 @@ def home():
 
 @app.route('/login', methods=['POST'])
 def login():
+    API_KEY = "12345SECRET"
     username = request.form.get("username")
     password = request.form.get("password")
 
