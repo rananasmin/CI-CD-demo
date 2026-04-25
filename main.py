@@ -1,16 +1,27 @@
-from flask import Flask
-from flask_talisman import Talisman
-
+from flask import Flask, request, render_template
 
 app = Flask(__name__)
-Talisman(app) # This adds CSP, HSTS, and other headers ZAP is looking for
-
 
 @app.route("/")
 def home():
-    return "Flask app is running!"
+    return render_template("login.html")
 
-if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=5000)
+@app.route('/login', methods=['POST'])
+def login():
+    username = request.form.get("username")
+    password = request.form.get("password")
+
+    if username == "admin" and password == "admin" :
+        return "Login Succesfull"
+    else:
+        return "Login Failed"
     
 
+@app.route("/search")
+def search():
+    query = request.args.get("q")
+    return f"Result for {query}"
+
+if __name__ == "__main__" :
+    app.run(debug="true")
+        
