@@ -17,6 +17,18 @@ def login():
     else:
         return "Login Failed"
     
+@app.route("/user")
+def user():
+    name = request.args.get("name")
+
+    conn = sqlite3.connect("users.db")
+    cursor = conn.cursor()
+
+    query = "SELECT * FROM users WHERE name = '" + name + "'"
+    cursor.execute(query)
+
+    return str(cursor.fetchall())
+
 
 @app.route("/search")
 def search():
